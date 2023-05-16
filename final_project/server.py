@@ -9,19 +9,15 @@ def index():
 
 @app.route('/englishToFrench', methods=['POST'])
 def english_to_french():
-    english_text = request.form['english_text']
-    if not english_text:
-        return "Please provide English text"
-    translated_text = translator.english_to_french(english_text)
-    return translated_text
+    textToTranslate = request.args.get('textToTranslate')
+    french_text= translator.english_to_french(textToTranslate)
+    return french_text
 
 @app.route('/frenchToEnglish', methods=['POST'])
 def french_to_english():
-    french_text = request.form['french_text']
-    if not french_text:
-        return "Please provide French text"
-    translated_text = translator.french_to_english(french_text)
-    return translated_text
+    textToTranslate = request.args.get('textToTranslate')
+    french_text= translator.french_to_english(textToTranslate)
+    return french_text
 
-if __name__ == '__main__':
-    app.run()
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8080)
