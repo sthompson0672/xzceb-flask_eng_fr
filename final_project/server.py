@@ -7,17 +7,19 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/englishToFrench', methods=['POST'])
+@app.route("/englishToFrench")
 def english_to_french():
     textToTranslate = request.args.get('textToTranslate')
     french_text= translator.english_to_french(textToTranslate)
     return french_text
 
-@app.route('/frenchToEnglish', methods=['POST'])
+
+@app.route("/frenchToEnglish")
 def french_to_english():
     textToTranslate = request.args.get('textToTranslate')
-    french_text= translator.french_to_english(textToTranslate)
-    return french_text
+    english_text = translator.french_to_english(textToTranslate)
+    return english_text
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
